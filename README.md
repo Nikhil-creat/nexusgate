@@ -23,3 +23,6 @@ Load test: `k6 run loadtest/load_test.js`
 ## Honest status
 Implemented (new: RS256 JWT/JWKS auth via JWKS_URL): LB with pooled buffers, breaker, token bucket (local plus Lua script), in-memory semantic cache, heuristic threat filter, A2A guard, Prometheus counters.
 Still to wire for production: Redis client for `ratelimit.Remote`, Redis Search/HNSW in `rag`, ONNX model in `cnn_filter` (CGO), mTLS, OTel exporters. The p99 targets need your own benchmarking.
+
+## Gateway environment
+RATE, BURST, TOKEN_BUDGET, FAIL_MODE (open|closed), UPSTREAMS, ALLOW_ORIGIN, JWKS_URL. Build them in the site's Config builder.
