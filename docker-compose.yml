@@ -1,0 +1,7 @@
+services:
+  gateway: { build: ., ports: ["8080:8080"], environment: { UPSTREAMS: "http://mock-backend:9000" }, depends_on: [redis, mock-backend] }
+  redis: { image: redis:7-alpine }
+  mock-backend: { image: hashicorp/http-echo, command: ["-listen=:9000", "-text={\"ok\":true}"] }
+  otel-collector: { image: otel/opentelemetry-collector:latest, ports: ["4317:4317"] }
+  jaeger: { image: jaegertracing/all-in-one:latest, ports: ["16686:16686"] }
+  prometheus: { image: prom/prometheus:latest, ports: ["9090:9090"], volumes: ["./prometheus.yml:/etc/prometheus/prometheus.yml"] }

@@ -1,0 +1,3 @@
+scrape_configs:
+  - job_name: gateway
+    static_configs: [{ targets: ["gateway:8080"] }]
